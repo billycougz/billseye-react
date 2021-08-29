@@ -1,0 +1,69 @@
+header {
+  background-color: #66CCFF;
+  border-bottom: 1px solid #5aafd9;
+  height: 270px;
+  transition: 3s;
+  -webkit-transition: 3s;
+  -moz-transition: 3s;
+  -o-transition: 3s;
+  &.transitioned {
+    height: 50px;
+    #logo {
+      max-height: 100%;
+      margin-left: 0% !important;
+    }
+    #logoText {
+      display: none;
+    }
+  }
+  #logo {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    -o-transition: 3s;
+    transition: 3s;
+    margin-left: calc((100% - 581px)/2);;
+  }
+  #logoText {
+    position: absolute;
+    color: black;
+    top: 122px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke: 2px #FFFF99;
+    font-size: 75px;
+    line-height: 1
+  }
+  #top-nav {
+    display: none;
+    li {
+      padding: 3px 10px 5px 10px;
+      cursor: pointer;
+      color: #555;
+      border-radius: 1em;
+      &:not(.active):hover {
+        background-color: white;
+      }
+      &.active {
+        color: white;
+      }
+    }
+  }
+}
+
+.navbar {
+  background-color: white;
+}
+
+.dropdown-toggle {
+  border-color: #66ccff;
+}
+
+.icon-bar {
+  background-color: #555;
+}
+
+#addAppButton {
+  display: none;
+  margin-bottom: 8px;
+  margin-left: 25px
+}

@@ -1,0 +1,27 @@
+// Override default variables before the import
+$body-bg: #F5F5F5;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+.card {
+  padding: 15px;
+}
+.btn-success {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.btn-warning {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.input-group-text {
+  color: #555;
+}
+.add-link {
+  padding-top: 0;
+  margin-left: 8em;
+  font-size: .75em;
+  text-decoration: none;
+}
