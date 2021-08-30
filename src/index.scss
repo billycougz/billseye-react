@@ -1,0 +1,36 @@
+$primary: #66CCFF;
+
+html {
+  font-size: 14px;
+}
+
+.input-group {
+  flex-wrap: nowrap;
+  .input-group-text {
+    min-width: 102px;
+    background-color: $primary;
+    justify-content: space-around;
+  }
+  .rbt {
+    flex: auto;
+  }
+  .form-control {
+    background-color: white;
+    &:not(.is-invalid) {
+      border-color: $primary;
+    }
+  }
+}
+
+#timer-duration {
+  margin-left: 12px;
+  margin-right: 1rem;
+}
+
+#addGameTile {
+  width: 100%;
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+}

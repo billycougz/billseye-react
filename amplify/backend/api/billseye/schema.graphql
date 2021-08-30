@@ -1,0 +1,53 @@
+type Event @model {
+        ID: Int!
+        Name: String!
+}
+
+type Game @model {
+        ID: Int!
+        EventID: Int!
+        GameID: Int!
+        LocationID: Int!
+        Team: Boolean!
+        WinnerID: Int!
+        LoserID: Int!
+        Test: Boolean!
+}
+
+type GameName @model {
+        ID: Int!
+        Name: String!
+}
+
+type Group @model {
+        ID: Int!
+        Name: String!
+        Location: Int!
+        GameName: Int!
+}
+
+type GroupMember @model {
+        ID: Int!
+        GroupID: Int!
+        MemberID: Int!
+}
+
+type Location @model {
+        ID: Int!
+        Name: String!
+}
+
+type Player @model {
+        ID: Int!
+        FirstName: String!
+        LastName: String!
+        Alias: String
+}
+
+type Team @model {
+        ID: Int!
+        Player1ID: Int!
+        Player2ID: Int!
+        Name: String
+}
+
