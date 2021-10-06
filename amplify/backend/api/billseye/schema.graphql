@@ -1,53 +1,51 @@
-type Event @model {
-        ID: Int!
-        Name: String!
-}
-
 type Game @model {
-        ID: Int!
-        EventID: Int!
-        GameID: Int!
-        LocationID: Int!
-        Team: Boolean!
-        WinnerID: Int!
-        LoserID: Int!
-        Test: Boolean!
+  id: ID!
+  gameNameId: ID!
+  gameName: GameName! @connection(fields: ["gameNameId"])
+  locationId: ID!
+  location: Location! @connection(fields: ["locationId"])
+  winnerId: ID!
+  winner: Player! @connection(fields: ["winnerId"])
+  loserId: ID!
+  loser: Player! @connection(fields: ["loserId"])
+  duration: Float
 }
 
 type GameName @model {
-        ID: Int!
-        Name: String!
+  id: ID!
+  name: String!
 }
 
 type Group @model {
-        ID: Int!
-        Name: String!
-        Location: Int!
-        GameName: Int!
-}
-
-type GroupMember @model {
-        ID: Int!
-        GroupID: Int!
-        MemberID: Int!
+  id: ID!
+  name: String!
+  locationId: ID!
+  location: Location! @connection(fields: ["locationId"])
+  gameNameId: ID!
+  gameName: GameName! @connection(fields: ["gameNameId"])
+  members: [GroupMember] @connection(keyName: "byGroup", fields: ["id"])
 }
 
 type Location @model {
-        ID: Int!
-        Name: String!
+  id: ID!
+  name: String!
 }
 
 type Player @model {
-        ID: Int!
-        FirstName: String!
-        LastName: String!
-        Alias: String
+  id: ID!
+  firstName: String!
+  lastName: String!
+  alias: String!
+  groups: [GroupMember] @connection(keyName: "byMember", fields: ["id"])
 }
 
-type Team @model {
-        ID: Int!
-        Player1ID: Int!
-        Player2ID: Int!
-        Name: String
+type GroupMember
+  @model(queries: null)
+  @key(name: "byGroup", fields: ["groupId", "memberId"])
+  @key(name: "byMember", fields: ["memberId", "groupId"]) {
+  id: ID!
+  groupId: ID!
+  memberId: ID!
+  group: Group! @connection(fields: ["groupId"])
+  member: Player! @connection(fields: ["memberId"])
 }
-

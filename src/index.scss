@@ -1,4 +1,4 @@
-$primary: #66CCFF;
+$primary: #66ccff;
 
 html {
   font-size: 14px;
@@ -25,12 +25,4 @@ html {
 #timer-duration {
   margin-left: 12px;
   margin-right: 1rem;
-}
-
-#addGameTile {
-  width: 100%;
-  // Medium devices (tablets, 768px and up)
-  @media (min-width: 768px) {
-    width: 300px;
-  }
 }

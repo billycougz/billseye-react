@@ -1,38 +1,63 @@
-import React, {useEffect, useState} from 'react';
 import './App.css';
 import TopNav from "./components/TopNav";
 import AddGamePanel from "./components/AddGamePanel";
-import MockPlayers from "./mocks/MockPlayers";
-import MockLocations from "./mocks/MockLocations";
-import MockGameNames from "./mocks/MockGameNames";
-import MockGameRecords from "./mocks/MockGameRecords";
+import GameHistory from './components/GameHistory';
+import { API } from "aws-amplify";
+import { useEffect, useState } from "react";
+import { listGames } from "./graphql/queries";
+import Leaderboard from './components/Leaderboard';
+import Groups from './components/Groups';
 
 function App() {
 
-    const [locations, setLocations]: any = useState([]);
-    const [gameNames, setGameNames]: any = useState([]);
-    const [players, setPlayers]: any = useState([]);
-    const [gameRecords, setGameRecords]: any = useState([]);
+    const [games, setGames] = useState<any[]>([]);
+    const [view, setView] = useState<string>('addgame');
 
-    useEffect(() => {
-        setLocations(MockLocations);
-        setGameNames(MockGameNames);
-        setPlayers(MockPlayers);
-        setGameRecords(MockGameRecords);
+    // @ts-ignore
+    useEffect(async () => {
+        const response = await (API.graphql({ query: listGames }) as Promise<any>);
+        if (response?.data?.listGames?.items) {
+            setGames(response.data.listGames.items);
+        }
     }, []);
 
+    function handleGameAdded(newGame: any) {
+        setGames([...games, newGame]);
+    }
+
     return (
-      <div className="App">
-          <TopNav />
-          <main className="container-fluid">
-              <AddGamePanel
-                  locations={locations}
-                  gameNames={gameNames}
-                  players={players}
-              />
-          </main>
-      </div>
-  );
+        <div className="App">
+
+            <TopNav activeView={view} onNavChange={setView} />
+
+            <main className="container-lg">
+
+                { /* Mobile */}
+                <div className="row d-sm-none">
+                    <div className="col col-12 col-sm-6">
+                        {view === 'addgame' && <AddGamePanel onGameAdded={handleGameAdded} />}
+                        {view === 'gamehistory' && <GameHistory games={games} />}
+                        {view === 'leaderboard' && <Leaderboard games={games} />}
+                        {view === 'groups' && <Groups />}
+                    </div>
+                </div>
+
+                { /* Tablet & Desktop */}
+                <div className="row d-none d-sm-flex">
+                    <div className="col col-12 col-sm-6 col-md-5 col-lg-4">
+                        <AddGamePanel onGameAdded={handleGameAdded} />
+                    </div>
+                    <div className="col col-12 col-sm-6 col-md-7 col-lg-8">
+                        {(view === 'addgame' || view === 'gamehistory') && <GameHistory games={games} />}
+                        {view === 'leaderboard' && <Leaderboard games={games} />}
+                        {view === 'groups' && <Groups />}
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+    );
 }
 
 export default App;

@@ -1,47 +1,49 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!) {
-    getEvent(id: $id) {
-      id
-      ID
-      Name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listEvents = /* GraphQL */ `
-  query ListEvents(
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        ID
-        Name
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getGame = /* GraphQL */ `
   query GetGame($id: ID!) {
     getGame(id: $id) {
       id
-      ID
-      EventID
-      GameID
-      LocationID
-      Team
-      WinnerID
-      LoserID
-      Test
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      winnerId
+      winner {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      loserId
+      loser {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      duration
       createdAt
       updatedAt
     }
@@ -56,14 +58,39 @@ export const listGames = /* GraphQL */ `
     listGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        ID
-        EventID
-        GameID
-        LocationID
-        Team
-        WinnerID
-        LoserID
-        Test
+        gameNameId
+        gameName {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        locationId
+        location {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        winnerId
+        winner {
+          id
+          firstName
+          lastName
+          alias
+          createdAt
+          updatedAt
+        }
+        loserId
+        loser {
+          id
+          firstName
+          lastName
+          alias
+          createdAt
+          updatedAt
+        }
+        duration
         createdAt
         updatedAt
       }
@@ -75,8 +102,7 @@ export const getGameName = /* GraphQL */ `
   query GetGameName($id: ID!) {
     getGameName(id: $id) {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -91,8 +117,7 @@ export const listGameNames = /* GraphQL */ `
     listGameNames(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        ID
-        Name
+        name
         createdAt
         updatedAt
       }
@@ -104,10 +129,31 @@ export const getGroup = /* GraphQL */ `
   query GetGroup($id: ID!) {
     getGroup(id: $id) {
       id
-      ID
-      Name
-      Location
-      GameName
+      name
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      members {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -122,41 +168,24 @@ export const listGroups = /* GraphQL */ `
     listGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        ID
-        Name
-        Location
-        GameName
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getGroupMember = /* GraphQL */ `
-  query GetGroupMember($id: ID!) {
-    getGroupMember(id: $id) {
-      id
-      ID
-      GroupID
-      MemberID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listGroupMembers = /* GraphQL */ `
-  query ListGroupMembers(
-    $filter: ModelGroupMemberFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listGroupMembers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        ID
-        GroupID
-        MemberID
+        name
+        locationId
+        location {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        gameNameId
+        gameName {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        members {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -168,8 +197,7 @@ export const getLocation = /* GraphQL */ `
   query GetLocation($id: ID!) {
     getLocation(id: $id) {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -184,8 +212,7 @@ export const listLocations = /* GraphQL */ `
     listLocations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        ID
-        Name
+        name
         createdAt
         updatedAt
       }
@@ -197,10 +224,19 @@ export const getPlayer = /* GraphQL */ `
   query GetPlayer($id: ID!) {
     getPlayer(id: $id) {
       id
-      ID
-      FirstName
-      LastName
-      Alias
+      firstName
+      lastName
+      alias
+      groups {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -215,43 +251,12 @@ export const listPlayers = /* GraphQL */ `
     listPlayers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        ID
-        FirstName
-        LastName
-        Alias
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getTeam = /* GraphQL */ `
-  query GetTeam($id: ID!) {
-    getTeam(id: $id) {
-      id
-      ID
-      Player1ID
-      Player2ID
-      Name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listTeams = /* GraphQL */ `
-  query ListTeams(
-    $filter: ModelTeamFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        ID
-        Player1ID
-        Player2ID
-        Name
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
         createdAt
         updatedAt
       }

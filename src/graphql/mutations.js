@@ -1,48 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createEvent = /* GraphQL */ `
-  mutation CreateEvent(
-    $input: CreateEventInput!
-    $condition: ModelEventConditionInput
-  ) {
-    createEvent(input: $input, condition: $condition) {
-      id
-      ID
-      Name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateEvent = /* GraphQL */ `
-  mutation UpdateEvent(
-    $input: UpdateEventInput!
-    $condition: ModelEventConditionInput
-  ) {
-    updateEvent(input: $input, condition: $condition) {
-      id
-      ID
-      Name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteEvent = /* GraphQL */ `
-  mutation DeleteEvent(
-    $input: DeleteEventInput!
-    $condition: ModelEventConditionInput
-  ) {
-    deleteEvent(input: $input, condition: $condition) {
-      id
-      ID
-      Name
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createGame = /* GraphQL */ `
   mutation CreateGame(
     $input: CreateGameInput!
@@ -50,14 +8,45 @@ export const createGame = /* GraphQL */ `
   ) {
     createGame(input: $input, condition: $condition) {
       id
-      ID
-      EventID
-      GameID
-      LocationID
-      Team
-      WinnerID
-      LoserID
-      Test
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      winnerId
+      winner {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      loserId
+      loser {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      duration
       createdAt
       updatedAt
     }
@@ -70,14 +59,45 @@ export const updateGame = /* GraphQL */ `
   ) {
     updateGame(input: $input, condition: $condition) {
       id
-      ID
-      EventID
-      GameID
-      LocationID
-      Team
-      WinnerID
-      LoserID
-      Test
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      winnerId
+      winner {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      loserId
+      loser {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      duration
       createdAt
       updatedAt
     }
@@ -90,14 +110,45 @@ export const deleteGame = /* GraphQL */ `
   ) {
     deleteGame(input: $input, condition: $condition) {
       id
-      ID
-      EventID
-      GameID
-      LocationID
-      Team
-      WinnerID
-      LoserID
-      Test
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      winnerId
+      winner {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      loserId
+      loser {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      duration
       createdAt
       updatedAt
     }
@@ -110,8 +161,7 @@ export const createGameName = /* GraphQL */ `
   ) {
     createGameName(input: $input, condition: $condition) {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -124,8 +174,7 @@ export const updateGameName = /* GraphQL */ `
   ) {
     updateGameName(input: $input, condition: $condition) {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -138,8 +187,7 @@ export const deleteGameName = /* GraphQL */ `
   ) {
     deleteGameName(input: $input, condition: $condition) {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -152,10 +200,31 @@ export const createGroup = /* GraphQL */ `
   ) {
     createGroup(input: $input, condition: $condition) {
       id
-      ID
-      Name
-      Location
-      GameName
+      name
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      members {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -168,10 +237,31 @@ export const updateGroup = /* GraphQL */ `
   ) {
     updateGroup(input: $input, condition: $condition) {
       id
-      ID
-      Name
-      Location
-      GameName
+      name
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      members {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -184,55 +274,31 @@ export const deleteGroup = /* GraphQL */ `
   ) {
     deleteGroup(input: $input, condition: $condition) {
       id
-      ID
-      Name
-      Location
-      GameName
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createGroupMember = /* GraphQL */ `
-  mutation CreateGroupMember(
-    $input: CreateGroupMemberInput!
-    $condition: ModelGroupMemberConditionInput
-  ) {
-    createGroupMember(input: $input, condition: $condition) {
-      id
-      ID
-      GroupID
-      MemberID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateGroupMember = /* GraphQL */ `
-  mutation UpdateGroupMember(
-    $input: UpdateGroupMemberInput!
-    $condition: ModelGroupMemberConditionInput
-  ) {
-    updateGroupMember(input: $input, condition: $condition) {
-      id
-      ID
-      GroupID
-      MemberID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteGroupMember = /* GraphQL */ `
-  mutation DeleteGroupMember(
-    $input: DeleteGroupMemberInput!
-    $condition: ModelGroupMemberConditionInput
-  ) {
-    deleteGroupMember(input: $input, condition: $condition) {
-      id
-      ID
-      GroupID
-      MemberID
+      name
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      members {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -245,8 +311,7 @@ export const createLocation = /* GraphQL */ `
   ) {
     createLocation(input: $input, condition: $condition) {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -259,8 +324,7 @@ export const updateLocation = /* GraphQL */ `
   ) {
     updateLocation(input: $input, condition: $condition) {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -273,8 +337,7 @@ export const deleteLocation = /* GraphQL */ `
   ) {
     deleteLocation(input: $input, condition: $condition) {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -287,10 +350,19 @@ export const createPlayer = /* GraphQL */ `
   ) {
     createPlayer(input: $input, condition: $condition) {
       id
-      ID
-      FirstName
-      LastName
-      Alias
+      firstName
+      lastName
+      alias
+      groups {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -303,10 +375,19 @@ export const updatePlayer = /* GraphQL */ `
   ) {
     updatePlayer(input: $input, condition: $condition) {
       id
-      ID
-      FirstName
-      LastName
-      Alias
+      firstName
+      lastName
+      alias
+      groups {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -319,58 +400,163 @@ export const deletePlayer = /* GraphQL */ `
   ) {
     deletePlayer(input: $input, condition: $condition) {
       id
-      ID
-      FirstName
-      LastName
-      Alias
+      firstName
+      lastName
+      alias
+      groups {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const createTeam = /* GraphQL */ `
-  mutation CreateTeam(
-    $input: CreateTeamInput!
-    $condition: ModelTeamConditionInput
+export const createGroupMember = /* GraphQL */ `
+  mutation CreateGroupMember(
+    $input: CreateGroupMemberInput!
+    $condition: ModelGroupMemberConditionInput
   ) {
-    createTeam(input: $input, condition: $condition) {
+    createGroupMember(input: $input, condition: $condition) {
       id
-      ID
-      Player1ID
-      Player2ID
-      Name
+      groupId
+      memberId
+      group {
+        id
+        name
+        locationId
+        location {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        gameNameId
+        gameName {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        members {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      member {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const updateTeam = /* GraphQL */ `
-  mutation UpdateTeam(
-    $input: UpdateTeamInput!
-    $condition: ModelTeamConditionInput
+export const updateGroupMember = /* GraphQL */ `
+  mutation UpdateGroupMember(
+    $input: UpdateGroupMemberInput!
+    $condition: ModelGroupMemberConditionInput
   ) {
-    updateTeam(input: $input, condition: $condition) {
+    updateGroupMember(input: $input, condition: $condition) {
       id
-      ID
-      Player1ID
-      Player2ID
-      Name
+      groupId
+      memberId
+      group {
+        id
+        name
+        locationId
+        location {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        gameNameId
+        gameName {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        members {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      member {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteTeam = /* GraphQL */ `
-  mutation DeleteTeam(
-    $input: DeleteTeamInput!
-    $condition: ModelTeamConditionInput
+export const deleteGroupMember = /* GraphQL */ `
+  mutation DeleteGroupMember(
+    $input: DeleteGroupMemberInput!
+    $condition: ModelGroupMemberConditionInput
   ) {
-    deleteTeam(input: $input, condition: $condition) {
+    deleteGroupMember(input: $input, condition: $condition) {
       id
-      ID
-      Player1ID
-      Player2ID
-      Name
+      groupId
+      memberId
+      group {
+        id
+        name
+        locationId
+        location {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        gameNameId
+        gameName {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        members {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      member {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

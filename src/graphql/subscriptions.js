@@ -1,51 +1,49 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateEvent = /* GraphQL */ `
-  subscription OnCreateEvent {
-    onCreateEvent {
-      id
-      ID
-      Name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateEvent = /* GraphQL */ `
-  subscription OnUpdateEvent {
-    onUpdateEvent {
-      id
-      ID
-      Name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteEvent = /* GraphQL */ `
-  subscription OnDeleteEvent {
-    onDeleteEvent {
-      id
-      ID
-      Name
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateGame = /* GraphQL */ `
   subscription OnCreateGame {
     onCreateGame {
       id
-      ID
-      EventID
-      GameID
-      LocationID
-      Team
-      WinnerID
-      LoserID
-      Test
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      winnerId
+      winner {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      loserId
+      loser {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      duration
       createdAt
       updatedAt
     }
@@ -55,14 +53,45 @@ export const onUpdateGame = /* GraphQL */ `
   subscription OnUpdateGame {
     onUpdateGame {
       id
-      ID
-      EventID
-      GameID
-      LocationID
-      Team
-      WinnerID
-      LoserID
-      Test
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      winnerId
+      winner {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      loserId
+      loser {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      duration
       createdAt
       updatedAt
     }
@@ -72,14 +101,45 @@ export const onDeleteGame = /* GraphQL */ `
   subscription OnDeleteGame {
     onDeleteGame {
       id
-      ID
-      EventID
-      GameID
-      LocationID
-      Team
-      WinnerID
-      LoserID
-      Test
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      winnerId
+      winner {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      loserId
+      loser {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      duration
       createdAt
       updatedAt
     }
@@ -89,8 +149,7 @@ export const onCreateGameName = /* GraphQL */ `
   subscription OnCreateGameName {
     onCreateGameName {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -100,8 +159,7 @@ export const onUpdateGameName = /* GraphQL */ `
   subscription OnUpdateGameName {
     onUpdateGameName {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -111,8 +169,7 @@ export const onDeleteGameName = /* GraphQL */ `
   subscription OnDeleteGameName {
     onDeleteGameName {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -122,10 +179,31 @@ export const onCreateGroup = /* GraphQL */ `
   subscription OnCreateGroup {
     onCreateGroup {
       id
-      ID
-      Name
-      Location
-      GameName
+      name
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      members {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -135,10 +213,31 @@ export const onUpdateGroup = /* GraphQL */ `
   subscription OnUpdateGroup {
     onUpdateGroup {
       id
-      ID
-      Name
-      Location
-      GameName
+      name
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      members {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -148,46 +247,31 @@ export const onDeleteGroup = /* GraphQL */ `
   subscription OnDeleteGroup {
     onDeleteGroup {
       id
-      ID
-      Name
-      Location
-      GameName
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateGroupMember = /* GraphQL */ `
-  subscription OnCreateGroupMember {
-    onCreateGroupMember {
-      id
-      ID
-      GroupID
-      MemberID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateGroupMember = /* GraphQL */ `
-  subscription OnUpdateGroupMember {
-    onUpdateGroupMember {
-      id
-      ID
-      GroupID
-      MemberID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteGroupMember = /* GraphQL */ `
-  subscription OnDeleteGroupMember {
-    onDeleteGroupMember {
-      id
-      ID
-      GroupID
-      MemberID
+      name
+      locationId
+      location {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      gameNameId
+      gameName {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      members {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -197,8 +281,7 @@ export const onCreateLocation = /* GraphQL */ `
   subscription OnCreateLocation {
     onCreateLocation {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -208,8 +291,7 @@ export const onUpdateLocation = /* GraphQL */ `
   subscription OnUpdateLocation {
     onUpdateLocation {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -219,8 +301,7 @@ export const onDeleteLocation = /* GraphQL */ `
   subscription OnDeleteLocation {
     onDeleteLocation {
       id
-      ID
-      Name
+      name
       createdAt
       updatedAt
     }
@@ -230,10 +311,19 @@ export const onCreatePlayer = /* GraphQL */ `
   subscription OnCreatePlayer {
     onCreatePlayer {
       id
-      ID
-      FirstName
-      LastName
-      Alias
+      firstName
+      lastName
+      alias
+      groups {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -243,10 +333,19 @@ export const onUpdatePlayer = /* GraphQL */ `
   subscription OnUpdatePlayer {
     onUpdatePlayer {
       id
-      ID
-      FirstName
-      LastName
-      Alias
+      firstName
+      lastName
+      alias
+      groups {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -256,49 +355,154 @@ export const onDeletePlayer = /* GraphQL */ `
   subscription OnDeletePlayer {
     onDeletePlayer {
       id
-      ID
-      FirstName
-      LastName
-      Alias
+      firstName
+      lastName
+      alias
+      groups {
+        items {
+          id
+          groupId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onCreateTeam = /* GraphQL */ `
-  subscription OnCreateTeam {
-    onCreateTeam {
+export const onCreateGroupMember = /* GraphQL */ `
+  subscription OnCreateGroupMember {
+    onCreateGroupMember {
       id
-      ID
-      Player1ID
-      Player2ID
-      Name
+      groupId
+      memberId
+      group {
+        id
+        name
+        locationId
+        location {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        gameNameId
+        gameName {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        members {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      member {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateTeam = /* GraphQL */ `
-  subscription OnUpdateTeam {
-    onUpdateTeam {
+export const onUpdateGroupMember = /* GraphQL */ `
+  subscription OnUpdateGroupMember {
+    onUpdateGroupMember {
       id
-      ID
-      Player1ID
-      Player2ID
-      Name
+      groupId
+      memberId
+      group {
+        id
+        name
+        locationId
+        location {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        gameNameId
+        gameName {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        members {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      member {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteTeam = /* GraphQL */ `
-  subscription OnDeleteTeam {
-    onDeleteTeam {
+export const onDeleteGroupMember = /* GraphQL */ `
+  subscription OnDeleteGroupMember {
+    onDeleteGroupMember {
       id
-      ID
-      Player1ID
-      Player2ID
-      Name
+      groupId
+      memberId
+      group {
+        id
+        name
+        locationId
+        location {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        gameNameId
+        gameName {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        members {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      member {
+        id
+        firstName
+        lastName
+        alias
+        groups {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

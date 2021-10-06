@@ -1,69 +1,68 @@
-header {
-  background-color: #66CCFF;
+#nav {
+  background-color: #66ccff !important;
   border-bottom: 1px solid #5aafd9;
-  height: 270px;
-  transition: 3s;
-  -webkit-transition: 3s;
-  -moz-transition: 3s;
-  -o-transition: 3s;
-  &.transitioned {
-    height: 50px;
-    #logo {
-      max-height: 100%;
-      margin-left: 0% !important;
+  margin-bottom: 1em;
+  padding: 0;
+
+  .container-lg {
+    position: relative;
+    &.initial {
+      height: 270px;
     }
-    #logoText {
-      display: none;
+    &.transitioning {
+      transition: 3s;
+      height: 50px;
     }
   }
+
   #logo {
-    -webkit-transition: 3s;
-    -moz-transition: 3s;
-    -o-transition: 3s;
-    transition: 3s;
-    margin-left: calc((100% - 581px)/2);;
+    padding: 0;
+    top: 0;
+    &.initial {
+      height: 270px;
+      position: absolute;
+      left: calc((100% - 581px) / 2);
+    }
+    &.transitioning {
+      transition: 3s;
+      height: 50px;
+      left: 11px;
+    }
   }
+
+  .navbar-brand {
+    padding: 0;
+    display: contents;
+  }
+
   #logoText {
     position: absolute;
     color: black;
     top: 122px;
     left: 50%;
     transform: translate(-50%, -50%);
-    -webkit-text-stroke: 2px #FFFF99;
+    -webkit-text-stroke: 2px #ffff99;
     font-size: 75px;
-    line-height: 1
+    line-height: 1;
   }
-  #top-nav {
-    display: none;
+
+  #navbarNav {
     li {
       padding: 3px 10px 5px 10px;
       cursor: pointer;
       color: #555;
       border-radius: 1em;
-      &:not(.active):hover {
+      :not(.active):hover {
+        border-radius: 1em;
         background-color: white;
       }
-      &.active {
+      .active {
         color: white;
       }
     }
   }
 }
 
-.navbar {
-  background-color: white;
-}
-
-.dropdown-toggle {
-  border-color: #66ccff;
-}
-
-.icon-bar {
-  background-color: #555;
-}
-
-#addAppButton {
-  display: none;
-  margin-bottom: 8px;
-  margin-left: 25px
+#nav-toggle {
+  background: white;
 }
