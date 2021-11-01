@@ -20,7 +20,7 @@ type FormModel = {
 
 type FormFieldType = 'duration' | 'date' | 'location' | 'gameName' | 'winner' | 'loser';
 
-function AddGamePanel({ onGameAdded }: any) {
+function AddGamePanel({ onGameAdded, mobile }: any) {
     const [formData, setFormData] = useState<FormModel>(Object);
     const [invalidFields, setInvalidFields] = useState<string[]>([]);
     const [newEntryField, setNewEntryField] = useState<any>();
@@ -71,8 +71,9 @@ function AddGamePanel({ onGameAdded }: any) {
         }
     }
     const openAddNewModal = (field: any) => {
-        const modalBtn = document.getElementById('modal-btn');
-        const modal = document.getElementById('staticBackdrop');
+        const prefix = mobile ? 'mobile-' : '';
+        const modalBtn = document.getElementById(prefix + 'modal-btn');
+        const modal = document.getElementById(prefix + 'staticBackdrop');
         if (modalBtn && !modal?.classList.contains('show')) {
             setNewEntryField(field);
             modalBtn.click();
@@ -299,8 +300,7 @@ function AddGamePanel({ onGameAdded }: any) {
 
             </form>
 
-            <Modal field={newEntryField} value={searchValue} onCancel={clearField} onSubmit={handleNewFieldDataSubmit} />
-
+            <Modal mobile={mobile} field={newEntryField} value={searchValue} onCancel={clearField} onSubmit={handleNewFieldDataSubmit} />
         </div>
     );
 }
