@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createGameName, createGroup, createLocation, createPlayer } from "../graphql/mutations";
 import { API } from "aws-amplify";
 
-function Modal({ field, onCancel, onSubmit, value }: any) {
+function Modal({ field, onCancel, onSubmit, value, mobile }: any) {
 
     const [inputData, setInputData] = useState<any>({});
     const [dataValid, setDataValid] = useState(false);
@@ -109,10 +109,12 @@ function Modal({ field, onCancel, onSubmit, value }: any) {
         console.log(inputData, dataValid);
     }
 
+    const prefix = mobile ? 'mobile-' : '';
+
     return (
         <>
-            <button id="modal-btn" className="d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop" />
-            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+            <button id={`${prefix}modal-btn`} className="d-none" data-bs-toggle="modal" data-bs-target={`#${prefix}staticBackdrop`} />
+            <div className="modal fade" id={`${prefix}staticBackdrop`} data-bs-backdrop="static" data-bs-keyboard="false"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">

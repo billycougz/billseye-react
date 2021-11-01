@@ -35,7 +35,7 @@ function App() {
                 { /* Mobile */}
                 <div className="row d-sm-none">
                     <div className="col col-12 col-sm-6">
-                        {view === 'addgame' && <AddGamePanel onGameAdded={handleGameAdded} />}
+                        {view === 'addgame' && <AddGamePanel mobile={true} onGameAdded={handleGameAdded} />}
                         {view === 'gamehistory' && <GameHistory games={games} />}
                         {view === 'leaderboard' && <Leaderboard games={games} />}
                         {view === 'groups' && <Groups />}
