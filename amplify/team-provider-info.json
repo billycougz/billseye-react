@@ -11,18 +11,5 @@
       "StackId": "arn:aws:cloudformation:us-west-2:210534634664:stack/amplify-billseyereact-prod-30505/352147b0-2652-11ec-b2d7-02999ac8a6c5",
       "AmplifyAppId": "d2bfj25738k46z"
     }
-  },
-  "staging": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-amplifye878c9c93c164-staging-00632-authRole",
-      "UnauthRoleArn": "arn:aws:iam::210534634664:role/amplify-amplifye878c9c93c164-staging-00632-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::210534634664:role/amplify-amplifye878c9c93c164-staging-00632-authRole",
-      "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-amplifye878c9c93c164-staging-00632-deployment",
-      "UnauthRoleName": "amplify-amplifye878c9c93c164-staging-00632-unauthRole",
-      "StackName": "amplify-amplifye878c9c93c164-staging-00632",
-      "StackId": "arn:aws:cloudformation:us-west-2:210534634664:stack/amplify-amplifye878c9c93c164-staging-00632/22020e10-0926-11ec-a686-0a9cf7ac3361",
-      "AmplifyAppId": "d2bfj25738k46z"
-    }
   }
 }
