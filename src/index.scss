@@ -4,6 +4,11 @@ html {
   font-size: 14px;
 }
 
+html,
+body {
+  max-width: 100%;
+}
+
 .input-group {
   flex-wrap: nowrap;
   .input-group-text {

@@ -29,6 +29,7 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
     const [duration, setDuration] = useState(undefined);
 
     // Refs
+    const dateRef = useRef(null);
     const locationRef = useRef(null);
     const gameNameRef = useRef(null);
     const winnerRef = useRef(null);
@@ -58,11 +59,12 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
     }, [])
 
     const onInputSelect = (field: FormFieldType, output: any) => {
-        console.log(output);
         const value = field === 'date' ? output : output.length ? output[0].id : undefined;
         formData[field] = value;
         setFormData({ ...formData });
         setInvalidFields(invalidFields.filter(invalidField => invalidField !== field));
+        console.log(dateRef?.current);
+        console.log(formData);
     }
     const onInputBlur = (field: FormFieldType, value: string) => {
         if (!formData[field] && value) {
@@ -132,6 +134,8 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
             variables: {
                 input: {
                     duration: duration,
+                    // @ts-ignore
+                    date: new Date(dateRef.current.value).toISOString().slice(0, -1),
                     locationId: formData.location,
                     gameNameId: formData.gameName,
                     winnerId: formData.winner,
@@ -142,6 +146,8 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
         clearAllFields();
         // @ts-ignore
         onGameAdded(response.data.createGame);
+        // @ts-ignore
+        setFormData({});
         setShowGameAddedAlert(true);
         setTimeout(() => setShowGameAddedAlert(false), 3000);
     }
@@ -157,6 +163,21 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
         loserRef.current.clear();
         // @ts-ignore
         document.getElementById('today').value = '';
+    }
+
+    const getDefaultDate = () => {
+        const date = new Date();
+        const year = date.getFullYear();
+        let month: any = date.getMonth() + 1;
+        let dt: any = date.getDate();
+
+        if (dt < 10) {
+            dt = '0' + dt;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        return year + '-' + month + '-' + dt;
     }
 
     return (
@@ -177,10 +198,12 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
 
             <form>
 
-                <div className="input-group mt-2 d-none">
+                <div className="input-group mt-2">
                     <span className="input-group-text">Date</span>
                     <input id="today" type="date" className="form-control" name="date"
                         onChange={(e) => onInputSelect('date', e.target.value)}
+                        defaultValue={getDefaultDate()}
+                        ref={dateRef}
                     />
                 </div>
 

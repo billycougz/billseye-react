@@ -1,7 +1,7 @@
 {
-    "AppSyncApiName": "billseye",
-    "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": false,
-    "CreateAPIKey": 1,
-    "APIKeyExpirationEpoch": 0
-  }
+  "AppSyncApiName": "billseye",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "CreateAPIKey": 1,
+  "APIKeyExpirationEpoch": 0
+}

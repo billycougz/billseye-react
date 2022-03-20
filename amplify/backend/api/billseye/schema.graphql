@@ -9,6 +9,7 @@ type Game @model {
   loserId: ID!
   loser: Player! @connection(fields: ["loserId"])
   duration: Float
+  date: String!
 }
 
 type GameName @model {

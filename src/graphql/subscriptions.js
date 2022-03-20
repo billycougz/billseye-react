@@ -44,6 +44,7 @@ export const onCreateGame = /* GraphQL */ `
         updatedAt
       }
       duration
+      date
       createdAt
       updatedAt
     }
@@ -92,6 +93,7 @@ export const onUpdateGame = /* GraphQL */ `
         updatedAt
       }
       duration
+      date
       createdAt
       updatedAt
     }
@@ -140,6 +142,7 @@ export const onDeleteGame = /* GraphQL */ `
         updatedAt
       }
       duration
+      date
       createdAt
       updatedAt
     }

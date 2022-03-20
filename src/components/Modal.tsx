@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createGameName, createGroup, createLocation, createPlayer } from "../graphql/mutations";
 import { API } from "aws-amplify";
 
@@ -7,6 +7,8 @@ function Modal({ field, onCancel, onSubmit, value, mobile }: any) {
     const [inputData, setInputData] = useState<any>({});
     const [dataValid, setDataValid] = useState(false);
     const [fieldText, setFieldText] = useState('');
+
+    const firstName: any = useRef();
 
     useEffect(() => {
         if (field === 'winner' || field === 'loser') {
@@ -133,10 +135,10 @@ function Modal({ field, onCancel, onSubmit, value, mobile }: any) {
                                 </div>
                             </>)}
 
-                            {field && (field === 'winner' || field === 'loser') && (<>
+                            <div className={!field || !(field === 'winner' || field === 'loser') ? 'd-none' : ''}>
                                 <div className="input-group mb-3">
                                     <span className="input-group-text" id="basic-addon3">First Name</span>
-                                    <input type="text" className="form-control" id="firstName" value={inputData.firstName} onChange={handleInputChange} />
+                                    <input ref={firstName} type="text" className="form-control" id="firstName" value={inputData.firstName} onChange={handleInputChange} />
                                 </div>
                                 <div className="input-group mb-3">
                                     <span className="input-group-text" id="basic-addon3">Last Name</span>
@@ -146,7 +148,7 @@ function Modal({ field, onCancel, onSubmit, value, mobile }: any) {
                                     <span className="input-group-text" id="basic-addon3">Alias</span>
                                     <input type="text" className="form-control" id="alias" value={inputData.alias} onChange={handleInputChange} />
                                 </div>
-                            </>)}
+                            </div>
 
                         </div>
                         <div className="modal-footer">
