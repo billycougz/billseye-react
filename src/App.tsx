@@ -43,7 +43,7 @@ function App() {
                 </div>
 
                 { /* Tablet & Desktop */}
-                <div className="row d-none d-sm-flex">
+                {/* <div className="row d-none d-sm-flex">
                     <div className="col col-12 col-sm-6 col-md-5 col-lg-4">
                         <AddGamePanel onGameAdded={handleGameAdded} />
                     </div>
@@ -52,7 +52,7 @@ function App() {
                         {view === 'leaderboard' && <Leaderboard games={games} />}
                         {view === 'groups' && <Groups />}
                     </div>
-                </div>
+                </div> */}
 
             </main>
 
