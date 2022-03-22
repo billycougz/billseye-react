@@ -20,7 +20,7 @@ function GameHistory({ games }: any) {
           games.map((game, index) => (
             <tr>
               <th scope="row">{index + 1}</th>
-              <td>{new Date(game.createdAt).toLocaleDateString()}</td>
+              <td>{new Date(game.date).toLocaleDateString()}</td>
               <td>{game.winner.alias}</td>
               <td>{game.loser.alias}</td>
             </tr>

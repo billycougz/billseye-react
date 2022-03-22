@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import Timer from "./Timer";
 import { Typeahead } from 'react-bootstrap-typeahead';
-import Modal from "./Modal";
 import { API } from 'aws-amplify';
 import { listGameNames, listLocations, listPlayers } from '../graphql/queries';
 import AddNewButton from './AddNewButton';
 import { createGame } from '../graphql/mutations';
+import CreateSelectDataModal from './CreateSelectDataModal';
 
 const placeholderText = 'Nothing selected...';
 
@@ -28,7 +28,10 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
     const [showGameAddedAlert, setShowGameAddedAlert] = useState(false);
     const [duration, setDuration] = useState(undefined);
 
+    const [modalShow, setModalShow] = useState(false);
+
     // Refs
+    const dateRef = useRef(null);
     const locationRef = useRef(null);
     const gameNameRef = useRef(null);
     const winnerRef = useRef(null);
@@ -58,11 +61,12 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
     }, [])
 
     const onInputSelect = (field: FormFieldType, output: any) => {
-        console.log(output);
         const value = field === 'date' ? output : output.length ? output[0].id : undefined;
         formData[field] = value;
         setFormData({ ...formData });
         setInvalidFields(invalidFields.filter(invalidField => invalidField !== field));
+        console.log(dateRef?.current);
+        console.log(formData);
     }
     const onInputBlur = (field: FormFieldType, value: string) => {
         if (!formData[field] && value) {
@@ -71,13 +75,8 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
         }
     }
     const openAddNewModal = (field: any) => {
-        const prefix = mobile ? 'mobile-' : '';
-        const modalBtn = document.getElementById(prefix + 'modal-btn');
-        const modal = document.getElementById(prefix + 'staticBackdrop');
-        if (modalBtn && !modal?.classList.contains('show')) {
-            setNewEntryField(field);
-            modalBtn.click();
-        }
+        setNewEntryField(field);
+        setModalShow(true);
     };
     const onInputChange = (field: FormFieldType, fieldOptions: any[], value: string) => {
         const optionMatch = fieldOptions.find((option: any) => option.name === value)
@@ -96,17 +95,20 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
         return location && gameName && loser && winner;
     }
 
+
+
     const clearField = (field: string) => {
         const inputField = document.getElementById(field);
         if (inputField) {
             // @ts-ignore
             inputField.value = '';
         }
+        setModalShow(false);
         setNewEntryField(null);
     }
 
-    const handleNewFieldDataSubmit = (field: string, newObject: any) => {
-        switch (field) {
+    const handleCreateSelectData = async (newObject: any) => {
+        switch (newEntryField) {
             case 'location':
                 setLocations([...locations, newObject]);
                 break;
@@ -122,8 +124,10 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
             default:
                 break;
         }
-        setFormData({ ...formData, [field]: newObject.id });
-        setInvalidFields(invalidFields.filter(invalidField => invalidField !== field));
+        setFormData({ ...formData, [newEntryField]: newObject.id });
+        setInvalidFields(invalidFields.filter(invalidField => invalidField !== newEntryField));
+        setNewEntryField(null);
+        setModalShow(false);
     }
 
     const handleSubmit = async () => {
@@ -132,6 +136,8 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
             variables: {
                 input: {
                     duration: duration,
+                    // @ts-ignore
+                    date: new Date(dateRef.current.value).toISOString().slice(0, -1),
                     locationId: formData.location,
                     gameNameId: formData.gameName,
                     winnerId: formData.winner,
@@ -142,6 +148,8 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
         clearAllFields();
         // @ts-ignore
         onGameAdded(response.data.createGame);
+        // @ts-ignore
+        setFormData({});
         setShowGameAddedAlert(true);
         setTimeout(() => setShowGameAddedAlert(false), 3000);
     }
@@ -157,6 +165,21 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
         loserRef.current.clear();
         // @ts-ignore
         document.getElementById('today').value = '';
+    }
+
+    const getDefaultDate = () => {
+        const date = new Date();
+        const year = date.getFullYear();
+        let month: any = date.getMonth() + 1;
+        let dt: any = date.getDate();
+
+        if (dt < 10) {
+            dt = '0' + dt;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        return year + '-' + month + '-' + dt;
     }
 
     return (
@@ -177,10 +200,12 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
 
             <form>
 
-                <div className="input-group mt-2 d-none">
+                <div className="input-group mt-2">
                     <span className="input-group-text">Date</span>
                     <input id="today" type="date" className="form-control" name="date"
                         onChange={(e) => onInputSelect('date', e.target.value)}
+                        defaultValue={getDefaultDate()}
+                        ref={dateRef}
                     />
                 </div>
 
@@ -300,7 +325,8 @@ function AddGamePanel({ onGameAdded, mobile }: any) {
 
             </form>
 
-            <Modal mobile={mobile} field={newEntryField} value={searchValue} onCancel={clearField} onSubmit={handleNewFieldDataSubmit} />
+            <CreateSelectDataModal show={modalShow} onCancel={clearField} onCreate={handleCreateSelectData} field={newEntryField} value={searchValue} />
+
         </div>
     );
 }

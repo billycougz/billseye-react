@@ -44,6 +44,7 @@ export const getGame = /* GraphQL */ `
         updatedAt
       }
       duration
+      date
       createdAt
       updatedAt
     }
@@ -91,6 +92,7 @@ export const listGames = /* GraphQL */ `
           updatedAt
         }
         duration
+        date
         createdAt
         updatedAt
       }
