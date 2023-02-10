@@ -13,11 +13,11 @@ Billseye provides a frontend for entering the results of basic dart matches (i.e
 Check the Amplify CLI version within the Amplify build settings in the console.
 
 ### API Key
-
-`amplify/backend/api/billseye/parameters.json`
-
-- Delete old key in console and create new key
-- Delete old key by changing `CreateAPIKey` to `0`
-- Recreate by changing back to `1`
-- Redeploy frontend
-- Handle for each environment
+1. Option 1: Extend the expiration of the current key via the AppSync console (not always an option)
+2. Option 2: Create a new key by pushing Amplify config changes
+    - The following changes are made within `amplify/backend/api/billseye/parameters.json`
+    - Delete old key by changing `CreateAPIKey` to `0`
+    - Recreate by changing back to `1`
+    - Redeploy frontend
+    - Handle for each environment
+    - If an old key exists in the AppSync console, delete it
